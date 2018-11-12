@@ -34,7 +34,6 @@ private:
 
 
 
-#endif // !Stack_Array_Fantasil_H
 
 template<class T>
 stack_a<T>::stack_a(int ca)
@@ -150,3 +149,5 @@ std::ostream & operator<<(std::ostream & os, stack_a<U> sa)
 	os << sa._element[flag] << "}\n";
 	return os;
 }
+
+#endif // !Stack_Array_Fantasil_H

@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef Basic_Stack_Fantasil_H
-#define Basci_Stack_Fantasil_H
+#define Basic_Stack_Fantasil_H
 
 
 template<class T>

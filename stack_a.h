@@ -1,5 +1,6 @@
 #pragma once
 #include"basic_stack_a.h"
+#include"tools.h"
 #include<utility>
 #include<iostream>
 #ifndef Stack_Array_Fantasil_H
@@ -22,9 +23,9 @@ namespace sli {
 			int pop(T& val);
 
 			template<class U>
-			friend std::istream& operator>>(std::istream& is, stack_a<U> sa);
+			friend std::istream& operator>>(std::istream& is, stack_a<U>& sa);
 			template<class U>
-			friend std::ostream& operator<<(std::ostream& os, stack_a<U> sa);
+			friend std::ostream& operator<<(std::ostream& os, stack_a<U>& sa);
 
 		private:
 			void resize(int factor = 2);
@@ -34,7 +35,7 @@ namespace sli {
 		};
 
 		template<class U>
-		std::istream & operator>>(std::istream & is, stack_a<U> sa)
+		std::istream & operator>>(std::istream & is, stack_a<U>& sa)
 		{
 			U temp{};
 			while (is >> temp)
@@ -44,7 +45,7 @@ namespace sli {
 			return is;
 		}
 		template<class U>
-		std::ostream & operator<<(std::ostream & os, stack_a<U> sa)
+		std::ostream & operator<<(std::ostream & os, stack_a<U>& sa)
 		{
 			int flag = sa._size - 1;
 			os << "{";
@@ -52,7 +53,10 @@ namespace sli {
 			{
 				os << sa._element[i] << ",";
 			}
-			os << sa._element[flag] << "}\n";
+			if (sa._size)
+				os << sa._element[flag] << "}";
+			else
+				os << "}";
 			return os;
 		}
 	}
@@ -141,7 +145,11 @@ int sli::cont::stack_a<T>::pop(T & val)
 template<class T>
 void sli::cont::stack_a<T>::resize(int factor)
 {
-	int new_capacity = _capacity * factor;
+	tool::array_resize(_element, _capacity, factor, 0);
+	int temp = _capacity;
+	_capacity = static_cast<int>(_capacity*factor);
+	_size = _capacity > temp ? temp : _capacity;
+	/*int new_capacity = _capacity * factor;
 	T* array = new T[new_capacity];
 	int capacity = new_capacity > _capacity ? _capacity : new_capacity;
 	for (int i = 0; i < capacity; ++i)
@@ -151,7 +159,7 @@ void sli::cont::stack_a<T>::resize(int factor)
 	_capacity = new_capacity;
 	delete _element;
 	_element = array;
-	array = nullptr;
+	array = nullptr;*/
 }
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include"basic_stack.h"
+#include"node.h"
 #include<iostream>
 
 #ifndef Stack_List_Fantasil_H
@@ -8,12 +9,7 @@
 namespace sli {
 	namespace cont {
 
-		template<class T>
-		struct bi_node{
-			T val;
-			bi_node<T>* _prev;
-			bi_node<T>* _next;
-		};
+
 
 		template<class T>
 		class stack_l :basic_stack<T> {
@@ -31,8 +27,8 @@ namespace sli {
 			template<class U>
 			friend std::ostream& operator<<(std::ostream& os, stack_l<U>& sl);
 		private:
-			bi_node<T>* _head;
-			bi_node<T>* _trail;
+			node::bi_node<T>* _head;
+			node::bi_node<T>* _trail;
 		};
 
 		template<class T>
@@ -45,8 +41,8 @@ namespace sli {
 		template<class T>
 		stack_l<T>::~stack_l()
 		{
-			bi_node<T>* cur = _head;
-			bi_node<T>* next = cur;
+			node::bi_node<T>* cur = _head;
+			node::bi_node<T>* next = cur;
 			while (cur)
 			{
 				next = cur->_next;
@@ -66,7 +62,7 @@ namespace sli {
 		template<class T>
 		int stack_l<T>::push(const T & val)
 		{
-			bi_node<T>* node = new bi_node<T>{ val,nullptr,nullptr };
+			node::bi_node<T>* node = new node::bi_node<T>{ val,nullptr,nullptr };
 			if (empty())
 			{
 				_head = _trail = node;
@@ -118,7 +114,7 @@ namespace sli {
 		std::ostream & operator<<(std::ostream & os, stack_l<U>& sl)
 		{
 			std::cout << "{";
-			for (bi_node<U>* p = sl._head; p != sl._trail; p=p->_next)
+			for (node::bi_node<U>* p = sl._head; p != sl._trail; p=p->_next)
 			{
 				std::cout << p->val << ",";
 			}

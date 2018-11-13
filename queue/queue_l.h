@@ -1,5 +1,5 @@
 #pragma once
-#include"node.h"
+#include"tools\node.h"
 #include"basic_queue.h"
 #include<iostream>
 

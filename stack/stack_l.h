@@ -1,6 +1,6 @@
 #pragma once
 #include"basic_stack.h"
-#include"node.h"
+#include"tools\node.h"
 #include<iostream>
 
 #ifndef Stack_List_Fantasil_H

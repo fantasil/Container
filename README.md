@@ -17,3 +17,24 @@ stack_l是一个基于双向节点的链表实现类
 
 
 ///=======================2018/11/12=========分割线============================///
+
+添加了一些queue的实现.与stack类似
+
+basic_queue只定义了(empty,enqueue,dequeue)
+
+basic_queue_a仍是虚基类,是数组实现的祖先,添加了(full,size)
+
+queue_a是一个基于数组的实现类
+
+queue_l是一个基于双向节点的链表实现类.
+
+添加了连个辅助文件,tools和node.node定义了一个简单的双向节点类(bi_node),以后其他的节点,也会定义在这个文件中.
+
+tools则是一些小函数.目前只有两个(array_resize,array_move)
+
+array_resize:重新为数组a分配空间,新空间容量为(ca_a*factor),pos指定从a的pos位置处的数据开始移动.
+            先移动[pos,end),再移动[0,pos),移动的数量为min(ca_a,ca_a*factor);
+
+array_move:移动数组a中的序列[ab,ae)到数组b的[bb,bb+ae-ab)中.
+
+///=======================2018/11/13=========分割线============================///

@@ -1,7 +1,7 @@
 #pragma once
 #ifndef My_Node_H_Fantasil
 #define My_Node_H_Fantasil
-
+#include<utility>
 
 
 namespace sli
@@ -10,6 +10,7 @@ namespace sli
 	struct forward_node_tag {};
 	struct bidirectional_node_tag {};
 	struct normal_tree_node_tag {};
+	struct binary_tree_node_tag :normal_tree_node_tag {};
 	
 	/*
 		@单向节点
@@ -70,6 +71,35 @@ namespace sli
 		node_type_pointer parent;
 		node_type_pointer left;
 		node_type_pointer right;
+		
+		normal_tree_node() :val{}, parent{ nullptr }, left{ nullptr }, right{ nullptr } {}
+		normal_tree_node(value_type v):val{v},parent{nullptr},left{nullptr},right{nullptr}{}
+	};
+
+	/*
+		@一般二叉树节点
+		@含有值域key,val,指针域parent,left,right
+	*/
+
+	template<class K,class V>
+	struct binary_tree_node {
+		using value_type = V;
+		using key_type = K;
+		using reference = value_type & ;
+		using pointer = value_type * ;
+		using node_type = binary_tree_node<K, V>;
+		using node_type_pointer = node_type * ;
+		using node_category = binary_tree_node_tag;
+
+		key_type key;
+		value_type val;
+		node_type_pointer parent;
+		node_type_pointer left;
+		node_type_pointer right;
+
+		binary_tree_node() :key{}, val{}, parent{ nullptr }, left{ nullptr }, right{ nullptr } {}
+		binary_tree_node(K _key, V _val) :key{ _key }, val{ _val }, parent{ nullptr }, left{ nullptr }, right{ nullptr } {}
+		binary_tree_node(std::pair<K, V>& p) :key{ p.first }, val{ p.second }, parent{ nullptr }, left{ nullptr }, right{ nullptr } {}
 	};
 
 
